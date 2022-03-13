@@ -1,0 +1,51 @@
+{
+  "name": "@kirishima/queue",
+  "author": {
+    "name": "KagChi"
+  },
+  "description": "A built-in queue plugin for beginner user",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "version": "0.1.0",
+  "license": "GPL-3.0",
+  "repository": {
+    "url": "https://github.com/kirishima-ship/queue"
+  },
+  "bugs": {
+    "url": "https://github.com/kirishima-ship/queue/issues"
+  },
+  "readme": "https://github.com/kirishima-ship/queue/blob/main/README.md",
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=7.0.0"
+  },
+  "scripts": {
+    "build": "rimraf dist && unbuild && tsc",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
+    "format": "prettier --write {src,tests}/**/*.ts"
+  },
+  "devDependencies": {
+    "@babel/types": "7.17.0",
+    "@sapphire/eslint-config": "4.3.0",
+    "@sapphire/prettier-config": "1.4.0",
+    "@sapphire/ts-config": "3.3.2",
+    "eslint": "8.11.0",
+    "prettier": "2.5.1",
+    "rimraf": "3.0.2",
+    "typescript": "4.6.2",
+    "unbuild": "0.7.0"
+  },
+  "prettier": "@sapphire/prettier-config",
+  "dependencies": {
+    "@kirishima/core": "^0.2.3",
+    "@kirishima/ws": "^0.2.1",
+    "lavalink-api-types": "^0.1.6"
+  }
+}
