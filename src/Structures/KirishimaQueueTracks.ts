@@ -25,6 +25,25 @@ export class KirishimaQueueTracks extends Array<KirishimaPartialTrack | Kirishim
 		if (Array.isArray(trackOrTracks)) this.push(...trackOrTracks);
 		else this.push(trackOrTracks);
 	}
+
+	public get totalSize() {
+		return this.length + (this.current ? 1 : 0);
+	}
+
+	public get size() {
+		return this.length;
+	}
+
+	public clear() {
+		this.splice(0);
+	}
+
+	public shuffle() {
+		for (let i = this.length - 1; i > 0; i--) {
+			const j = Math.floor(Math.random() * (i + 1));
+			[this[i], this[j]] = [this[j], this[i]];
+		}
+	}
 }
 
 export function ValidateValidArrayTracks(tracks: (KirishimaPartialTrack | KirishimaTrack)[]) {

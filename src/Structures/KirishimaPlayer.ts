@@ -31,6 +31,10 @@ export class KirishimaPlayer extends Structure.get('KirishimaPlayer') {
 		}
 		throw new Error('No track to play');
 	}
+
+	public get connected() {
+		return Boolean(this.voiceServer && this.voiceState);
+	}
 }
 
 declare module '@kirishima/core' {
@@ -40,6 +44,7 @@ declare module '@kirishima/core' {
 		loopType: LoopType;
 		setLoop(type: LoopType): this;
 		resolvePartialTrack(track: KirishimaPartialTrack): Promise<LoadTrackResponse>;
+		get connected(): boolean;
 	}
 }
 
