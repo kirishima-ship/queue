@@ -39,6 +39,7 @@ export class KirishimaNode extends Structure.get('KirishimaNode') {
 	private async trackEnd(player: KirishimaPlayer, message: TrackEndEventPayload) {
 		if (message.reason === 'REPLACED') return;
 		try {
+			player.playing = false;
 			if (player.loopType === LoopType.Track) {
 				if (isPartialTrack(player.queue.current) && player.queue.current) {
 					const track = await player.resolvePartialTrack(player.queue.current);
@@ -77,6 +78,25 @@ export class KirishimaNode extends Structure.get('KirishimaNode') {
 				}
 				this.kirishima.emit('queueEnd', player, player);
 			}
+
+			player.queue.previous = player.queue.current;
+			player.queue.current = player.queue.shift() ?? null;
+
+			if (player.queue.current) {
+				if (isPartialTrack(player.queue.current)) {
+					const track = await player.resolvePartialTrack(player.queue.current);
+					if (track.tracks.length) {
+						await player.playTrack(track.tracks[0].track);
+						return;
+					}
+					await player.stopTrack();
+					return;
+				}
+
+				await player.playTrack(player.queue.current!);
+				return;
+			}
+			this.kirishima.emit('queueEnd', player, player);
 		} catch (e) {
 			this.kirishima.emit('playerError', player, e);
 		}
@@ -91,6 +111,7 @@ export class KirishimaNode extends Structure.get('KirishimaNode') {
 	}
 
 	private trackStart(player: KirishimaPlayer, message: TrackStartEventPayload) {
+		player.playing = true;
 		this.kirishima.emit('trackStart', player, player.queue.current, message);
 	}
 }
