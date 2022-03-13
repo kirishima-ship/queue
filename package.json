@@ -47,6 +47,6 @@
   "dependencies": {
     "@kirishima/core": "^0.2.3",
     "@kirishima/ws": "^0.2.1",
-    "lavalink-api-types": "^0.1.6"
+    "lavalink-api-types": "^0.1.7"
   }
 }
