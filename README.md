@@ -6,6 +6,23 @@
 
 </div>
 
+# Instalation 
+```
+npm install @kirishima/queue @kirishima/core
+```
+
 # Features
 - Written in TypeScript
 - Support ESM & CommonJS
+
+# Example 
+```ts
+import { KirishimaQueue } from "@kirishima/core";
+import { Kirishima } from "@kirishima/core";
+
+const kirishima = new Kirishima({
+    plugins: [
+        new KirishimaQueue()
+    ]
+});
+```
