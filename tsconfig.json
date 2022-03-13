@@ -4,7 +4,8 @@
 		"rootDir": "./src",
 		"outDir": "./dist",
 		"composite": true,
-		"preserveConstEnums": true
+		"preserveConstEnums": true,
+		"skipLibCheck": false,
 	},
 	"include": ["src/**/*.ts"]
 }
