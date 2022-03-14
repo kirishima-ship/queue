@@ -12,7 +12,7 @@
       "require": "./dist/index.js"
     }
   },
-  "version": "0.1.0",
+  "version": "0.2.0",
   "license": "GPL-3.0",
   "repository": {
     "url": "https://github.com/kirishima-ship/queue"
@@ -45,8 +45,9 @@
   },
   "prettier": "@sapphire/prettier-config",
   "dependencies": {
-    "@kirishima/core": "^0.2.3",
+    "@kirishima/core": "^0.3.0",
     "@kirishima/ws": "^0.2.1",
+    "discord-api-types": "^0.29.0",
     "lavalink-api-types": "^0.1.7"
   }
 }
