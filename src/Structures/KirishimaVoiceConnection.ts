@@ -64,7 +64,7 @@ export class KirishimaVoiceConnection {
 			op: WebsocketOpEnum.DESTROY,
 			guildId: this.guildId
 		});
-		return this;
+		this.player.kirishima.players?.delete(this.guildId);
 	}
 }
 
