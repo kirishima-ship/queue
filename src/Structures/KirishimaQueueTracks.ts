@@ -6,8 +6,7 @@ export class KirishimaQueueTracks extends Array<KirishimaPartialTrack | Kirishim
 	public previous: KirishimaPartialTrack | KirishimaTrack | null = null;
 
 	public add(trackOrTracks: KirishimaPartialTrack | KirishimaTrack | (KirishimaPartialTrack | KirishimaTrack)[]) {
-		if (Array.isArray(trackOrTracks) && !ValidateValidTracks(trackOrTracks))
-			throw new Error('Track(s) must be a "KirishimaPartialTrack" or "KirishimaTrack".');
+		if (!ValidateValidTracks(trackOrTracks)) throw new Error('Track(s) must be a "KirishimaPartialTrack" or "KirishimaTrack".');
 
 		if (!this.current) {
 			if (!Array.isArray(trackOrTracks)) {
@@ -41,7 +40,7 @@ export class KirishimaQueueTracks extends Array<KirishimaPartialTrack | Kirishim
 	}
 }
 
-export function ValidateValidTracks(tracks: (KirishimaPartialTrack | KirishimaTrack)[]) {
+export function ValidateValidTracks(tracks: KirishimaPartialTrack | KirishimaTrack | (KirishimaPartialTrack | KirishimaTrack)[]) {
 	if (Array.isArray(tracks)) {
 		for (const track of tracks) {
 			if (!(isTrack(track) || isPartialTrack(track))) return false;
