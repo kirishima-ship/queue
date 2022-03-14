@@ -14,6 +14,10 @@ export class KirishimaVoiceConnection {
 		return this.player.options.channelId;
 	}
 
+	public get shardId() {
+		return this.player.options.shardId;
+	}
+
 	public get textChannelId() {
 		return this.player.options.textChannelId;
 	}
