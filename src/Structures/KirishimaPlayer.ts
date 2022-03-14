@@ -8,7 +8,7 @@ import {
 	KirishimaTrack,
 	Structure
 } from '@kirishima/core';
-import type { LoadTrackResponse } from 'lavalink-api-types';
+import { LoadTrackResponse, WebsocketOpEnum } from 'lavalink-api-types';
 
 import { KirishimaQueueTracks } from './KirishimaQueueTracks';
 import { ConnectionState, KirishimaVoiceConnection } from './KirishimaVoiceConnection';
@@ -43,6 +43,16 @@ export class KirishimaPlayer extends Structure.get('KirishimaPlayer') {
 
 	public resolvePartialTrack(track: KirishimaPartialTrack) {
 		return this.kirishima.resolveTracks(`${track.info.title} - ${track.info.author ? track.info.author : ''}`);
+	}
+
+	public async setVolume(volume: number) {
+		if (volume < 0 || volume > 500) throw new Error('Volume must be between 0 and 500');
+		this.filters.volume = volume / 100;
+		await this.node.ws.send({
+			op: WebsocketOpEnum.FILTERS,
+			guildId: this.options.guildId,
+			...this.filters
+		});
 	}
 
 	public async playTrack(track?: KirishimaTrack | KirishimaPartialTrack | string) {
