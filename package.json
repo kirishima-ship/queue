@@ -45,7 +45,7 @@
   },
   "prettier": "@sapphire/prettier-config",
   "dependencies": {
-    "@kirishima/core": "^0.3.1",
+    "@kirishima/core": "^0.4.0",
     "@kirishima/ws": "^0.2.1",
     "discord-api-types": "^0.29.0",
     "lavalink-api-types": "^0.1.7"
