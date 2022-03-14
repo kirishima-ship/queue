@@ -18,6 +18,7 @@ export class KirishimaPlayer extends Structure.get('KirishimaPlayer') {
 	public loopType: LoopType = LoopType.None;
 	public playing = false;
 	public connection = new KirishimaVoiceConnection(this);
+	public paused = false;
 
 	public constructor(options: KirishimaPlayerOptions, kirishima: Kirishima, node: KirishimaNode) {
 		super(options, kirishima, node);
@@ -55,6 +56,28 @@ export class KirishimaPlayer extends Structure.get('KirishimaPlayer') {
 		});
 	}
 
+	public async setPaused(paused: boolean) {
+		await this.node.ws.send({
+			op: WebsocketOpEnum.PAUSE,
+			guildId: this.options.guildId,
+			pause: paused
+		});
+		this.paused = paused;
+		return this;
+	}
+
+	public async seekTo(position: number) {
+		if (this.playing) {
+			await this.node.ws.send({
+				op: WebsocketOpEnum.SEEK,
+				guildId: this.options.guildId,
+				position
+			});
+			return this;
+		}
+		throw new Error('There are no playing track currently.');
+	}
+
 	public async playTrack(track?: KirishimaTrack | KirishimaPartialTrack | string) {
 		if (track && isTrack(track)) {
 			return super.playTrack(track);
@@ -89,11 +112,15 @@ export class KirishimaPlayer extends Structure.get('KirishimaPlayer') {
 declare module '@kirishima/core' {
 	export interface KirishimaPlayer {
 		connection: KirishimaVoiceConnection;
+		paused: boolean;
 		playing: boolean;
 		queue: KirishimaQueueTracks;
 		loopType: LoopType;
 		setLoop(type: LoopType): this;
 		resolvePartialTrack(track: KirishimaPartialTrack): Promise<LoadTrackResponse>;
+		setPaused(paused: boolean): Promise<this>;
+		seekTo(position: number): Promise<this>;
+		playTrack(track?: KirishimaTrack | KirishimaPartialTrack | string): Promise<this>;
 		get connected(): boolean;
 	}
 }
