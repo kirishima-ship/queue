@@ -38,7 +38,7 @@ export class KirishimaVoiceConnection {
 					...this.player.options,
 					selfDeaf: deaf
 				},
-				true
+				false
 			)
 		);
 		return this;
@@ -52,7 +52,7 @@ export class KirishimaVoiceConnection {
 					...this.player.options,
 					selfMute: mute
 				},
-				true
+				false
 			)
 		);
 		return this;
