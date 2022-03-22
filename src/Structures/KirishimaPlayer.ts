@@ -83,7 +83,7 @@ declare module '@kirishima/core' {
 		queue: KirishimaQueueTracks;
 		loopType: LoopType;
 		setLoop(type: LoopType): this;
-		resolvePartialTrack(track: KirishimaPartialTrack): Promise<LoadTrackResponse>;
+		resolvePartialTrack(track: KirishimaPartialTrack): Promise<LoadTrackResponse<KirishimaTrack>>;
 		setPaused(paused: boolean): Promise<this>;
 		seekTo(position: number): Promise<this>;
 		playTrack(track?: KirishimaTrack | KirishimaPartialTrack | string): Promise<this>;
