@@ -47,7 +47,7 @@
   "dependencies": {
     "@kirishima/core": "^0.6.2",
     "@kirishima/ws": "^0.2.2",
-    "discord-api-types": "^0.29.0",
+    "discord-api-types": "^0.31.0",
     "lavalink-api-types": "^0.1.9"
   }
 }
