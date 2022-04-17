@@ -17,7 +17,7 @@ npm install @kirishima/queue @kirishima/core
 
 # Example 
 ```ts
-import { KirishimaQueue } from "@kirishima/core";
+import { KirishimaQueue } from "@kirishima/queue";
 import { Kirishima } from "@kirishima/core";
 
 const kirishima = new Kirishima({
